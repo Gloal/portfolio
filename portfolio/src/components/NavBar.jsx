@@ -1,66 +1,53 @@
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
+import React, { useState } from "react";
+import { Image } from "react-bootstrap";
+import { FaGithub } from "react-icons/fa";
+
 
 function NavBar() {
+
+    const [showSidebar, setShowSidebar] = useState(false);
+  
+    const handleToggleSidebar = () => {
+      setShowSidebar(!showSidebar);
+    };
+
+
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid>
-        <Navbar.Brand href="#">Gloria Alori</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Projects</Nav.Link>
-            <Nav.Link href="#action2">Work Experience</Nav.Link>
-            <NavDropdown title="More info" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">GitHub</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action4">
-                Email
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Phone
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Resume(pdf)
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-
-      <nav id="navbar" className="nav-menu navbar">
-            <ul>
-              <li>
-                <a href="#hero" className="nav-link scrollto active">
-                  <i className="bx bx-home"></i> <span>Home</span>
-                </a>
-              </li>
-              <li>
-                <a href="#portfolio" className="nav-link scrollto">
-                  <i className="bx bx-book-content"></i> <span>Portfolio</span>
-                </a>
-              </li>
-              <li>
-                <a href="#resume" className="nav-link scrollto">
-                  <i className="bx bx-file-blank"></i> <span>Resume</span>
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="nav-link scrollto">
-                  <i className="bx bx-envelope"></i> <span>Contact</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-
+    <>
+    <Navbar bg="purple" variant="dark" className="sidebar">
+      <Navbar.Toggle
+        aria-controls="sidebar-menu"
+        onClick={handleToggleSidebar}
+        className="sidebar-toggle"
+      />
+      <Navbar.Collapse id="sidebar-menu" className="sidebar-menu">
+        <Nav className="flex-column" activeKey="/home" onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}>
+          <Nav.Link href="/home" eventKey="/home" className="sidebar-item">
+            <Image
+              src="your-image-url-her"
+              alt="gloria alori"
+              roundedCircle
+              width={50}
+              height={50}
+              className="sidebar-image"
+            />
+            <span className="sidebar-text">Gloria Alori</span>
+          </Nav.Link>
+          <Nav.Link href="/portfolio" eventKey="/portfolio" className="sidebar-item">
+            <span className="sidebar-text">Portfolio</span>
+          </Nav.Link>
+          <Nav.Link href="/resume" eventKey="/resume" className="sidebar-item">
+            <span className="sidebar-text">Resume</span>
+          </Nav.Link>
+          <Nav.Link href="your-github-url-here" eventKey="github" className="sidebar-item">
+            <span className="sidebar-text">< FaGithub /></span>
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>
+    </>
   );
 }
 
